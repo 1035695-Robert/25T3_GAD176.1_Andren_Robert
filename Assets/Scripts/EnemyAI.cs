@@ -1,44 +1,86 @@
 using System.Runtime.CompilerServices;
 using Unity.Collections;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using UnityEditor;
 using UnityEngine;
+//using SAE.GAD176.damageMultiplier.MeleeSlime;
+//using SAE.GAD176.damageMultiplier.RangePlant;
+
 
 public class EnemyAI : MonoBehaviour
+
 {
+   
+    public enum DamageType
+    {
+        None,
+        Fire,
+        Blunt,
+        Slash,
+    }
+
+    public GameObject[] enemyType;
+
     private string enemyName;
     private Vector3 spawn;
-    private string weakness;
-    private string resistance;
-    private bool isDead = false;
-    private int healthAmount;
-
     
+    
+    private bool isDead = false;
+    protected int healthAmount;
+
+    private float range;
+
+
+  
+    
+    private void SpawnEnemy()
+    {
+        //spawn enemy at random vector3 postition
+       
+    }
     private void MoveTowards()
     {
         //set range detection
+        
         //detects if player is in range
         // move player towards player
     }
-    private void SpawnEnemy()
+
+    private void TakeDamage()
     {
-        //spawn enemy at set vector3 postition
+        //check what type of damage
+        /// 
+
+        // healthAmount =- weapondamage
+        EnemyKilled();
     }
-   private void EnemyKill()
-    {
-      //checks if health is 0 or below
-      //if below 0 set isDead to true.
-      //dropItem();
+   private void EnemyKilled()
+    { 
+        //checks if health is 0 or below
+        //if below 0 set isDead to true.
+        //dropItem();
+        if (healthAmount > 0) 
+        {
+            isDead = true;
+            DropItems();
+        }
+     
     }
     private void DropItems()
-    {
+    { 
         //drops item on death
         //override item type based on enemy type
     }
-    private void SetWeakness()
+    public virtual void SetWeakness()
     {
-        //override weakness type
+    //override weakness types
     }
-    private void SetResistance()
+    public virtual void SetResistance()
     {
+        //DamageType resistance1 = DamageType.None;
+
+        //DamageType resistance2 = DamageType.Fire;
+
         //override ristance type
     }
 }

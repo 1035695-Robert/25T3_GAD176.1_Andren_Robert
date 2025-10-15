@@ -1,12 +1,16 @@
 using UnityEngine;
-
-public class SlimeBall : DropItem
+namespace SAE.GAD176.SlimeBall.Healing
 {
-    private int slimeHeal;
-
-    private void SlimeHealing()
+    public class SlimeBall : Items
     {
-        //heals melee slime on trigger
-    }   
+        public int healingAmount;
 
+        public void healSlime(MeleeSlime meleeSlime)
+        {
+
+            //heals melee slime on trigger
+            meleeSlime.AbsorbHeal();
+        }
+
+    }
 }
