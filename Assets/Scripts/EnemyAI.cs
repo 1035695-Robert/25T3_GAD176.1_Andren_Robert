@@ -23,16 +23,28 @@ public class EnemyAI : MonoBehaviour
 
     private string enemyName;
     private Vector3 spawn;
-    
-    
+
+    private GameObject player;
     private bool isDead = false;
     protected int healthAmount;
 
     private float range;
 
 
-  
-    
+
+    private void Start()
+    {
+     player = GameObject.FindGameObjectWithTag("player");
+    }
+    private void Update()
+    {
+        //set range detection
+
+        //detects if player is in range
+        if ()// enemy detects player in range
+            MoveTowards)();
+    }
+
     private void SpawnEnemy()
     {
         //spawn enemy at random vector3 postition
@@ -40,10 +52,9 @@ public class EnemyAI : MonoBehaviour
     }
     private void MoveTowards()
     {
-        //set range detection
         
-        //detects if player is in range
         // move player towards player
+       // Rigidbody.
     }
 
     private void TakeDamage()

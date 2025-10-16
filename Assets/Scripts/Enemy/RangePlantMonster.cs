@@ -34,8 +34,8 @@ public class RangePlantMonster : EnemyAI
             DamageType resistance2 = DamageType.None;
             base.SetResistance();
         }
-        public override void SetWeakness()
-        {
+        public override vo
+
             DamageType weakness1 = DamageType.Blunt;
             DamageType weakness2 = DamageType.None;
 
