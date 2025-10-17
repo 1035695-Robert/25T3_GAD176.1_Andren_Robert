@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 
+public enum item
+{ 
+
+}
 public class Items : MonoBehaviour
 {
     public GameObject[] itemName;

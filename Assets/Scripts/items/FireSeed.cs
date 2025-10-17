@@ -11,11 +11,7 @@ public class FireSeed : Projectile
         base.DamageSet();
     }
 
-    public override void AmmunitionAmoutSet()
-    {
-        maxAmount = 2;
-        base.AmmunitionAmoutSet();
-    }
+   
 
     void Burn()
     {

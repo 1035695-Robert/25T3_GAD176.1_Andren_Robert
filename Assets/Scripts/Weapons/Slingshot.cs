@@ -42,7 +42,7 @@ namespace SAE.GAD176.SlingShot
             //starts cooldown in weapons class
             //Instantiate projectile seed
             
-            NextAttack();
+       
         }
     }
 }

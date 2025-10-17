@@ -10,40 +10,52 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 
 {
-   
-    public enum DamageType
-    {
-        None,
-        Fire,
-        Blunt,
-        Slash,
-    }
-
     public GameObject[] enemyType;
 
-    private string enemyName;
     private Vector3 spawn;
-
-    private GameObject player;
+    //[SerializeField] string[] weakness; AG commented out in preparation of using an ENUM instead
+   // [SerializeField] string[] ;
     private bool isDead = false;
     protected int healthAmount;
 
-    private float range;
+    private string[] dropItem;
 
+    protected Rigidbody rigidBody;
+    [SerializeField] protected Transform player;
+    
+   protected float distanceFromPlayer;
+   [SerializeField] private float detectionDistance;
+    private float attackDistance;
+   
+    [SerializeField] private float movementSpeed = 2f;
+    [SerializeField] private string enemyName;
 
+   [SerializeField] public DamageType weakness = DamageType.Undefined;
+    [SerializeField] public DamageType resistance = DamageType.Undefined;
+    //[SerializeField] private Weapon weaponScript;
+    //[SerializeField] private Projectile projectileScript;
 
     private void Start()
     {
-     player = GameObject.FindGameObjectWithTag("player");
+        rigidBody = GetComponent<Rigidbody>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+       // SetResistance();
+      //  SetWeakness();
     }
     private void Update()
     {
+        //detection tutorial video by Online Code Coaching "enemy Agro - attack player when too close
         //set range detection
-
+        distanceFromPlayer = Vector3.Distance(player.position, transform.position);
         //detects if player is in range
-        if ()// enemy detects player in range
-            MoveTowards)();
+        if(distanceFromPlayer <= detectionDistance) 
+        {
+            MoveTowards();
+        }
+       // enemy detects player in range
+       
     }
+   
 
     private void SpawnEnemy()
     {
@@ -52,15 +64,16 @@ public class EnemyAI : MonoBehaviour
     }
     private void MoveTowards()
     {
-        
         // move player towards player
-       // Rigidbody.
+        rigidBody.MovePosition(transform.position + (player.transform.position - transform.position) * movementSpeed * Time.fixedDeltaTime);
+        //work from week 5 class content
     }
 
     private void TakeDamage()
     {
+
         //check what type of damage
-        /// 
+        
 
         // healthAmount =- weapondamage
         EnemyKilled();
@@ -68,11 +81,11 @@ public class EnemyAI : MonoBehaviour
    private void EnemyKilled()
     { 
         //checks if health is 0 or below
-        //if below 0 set isDead to true.
-        //dropItem();
         if (healthAmount > 0) 
         {
+            //if below 0 set isDead to true.
             isDead = true;
+            //dropItem();
             DropItems();
         }
      
@@ -93,5 +106,5 @@ public class EnemyAI : MonoBehaviour
         //DamageType resistance2 = DamageType.Fire;
 
         //override ristance type
-    }
 }
+    }

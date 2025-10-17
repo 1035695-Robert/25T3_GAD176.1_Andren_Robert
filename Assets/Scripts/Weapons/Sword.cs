@@ -4,21 +4,19 @@ using UnityEngine;
 public class Sword : Weapon
 {
     private int attackPower;
-    private int attackrange = 5; 
+    private int attackrange = 5;
 
-    
-    private void attack()
+
+    private void Attack()
     {  //attacks enemy if colision hits
         if (canAttack == true)
         {
+
             Gizmos.color = Color.red;
-            Gizmos.DrawCube(Vector3.zero, Vector3.one); 
-            
+            Gizmos.DrawCube(Vector3.zero, Vector3.one);
+
             canAttack = false;
-            
-            NextAttack();
         }
-      
     }
-    
 }
+   

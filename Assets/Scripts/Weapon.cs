@@ -1,34 +1,52 @@
 using System.Collections;
 using Unity.Collections;
+using Unity.Jobs;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 public class Weapon : Items
 {
-    public enum Damagetype
-    {
-        None,
-        Slash,
-        Blunt,
-        Fire,
-    }
+    [SerializeField] protected DamageType damageMultiplyType = DamageType.Undefined;
+
 
     private int coolDownDuration;
-    protected bool canAttack = true;
+    private float baseAttackDamage;
+    private float damageMultiplier = 1.5f;
+    private float damage;
 
-  
-       protected void NextAttack()
+    protected bool canAttack = true;
+    private EnemyAI enemyAiScript;
+
+    private void Start()
     {
-        if (canAttack == false)
+       
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
         {
+            // preforms attack action
+            canAttack = false;
             StartCoroutine(CoolDown());
         }
-        //override cooldown durtation time
-
-        //wait set duration time till next attack
     }
+    private void OnCollisionEnter(Collision attackHit)
+    {
+        if (damageMultiplyType == enemyAiScript.weakness)
+        {
+            BonusDamage();
+        }
+        if (damageMultiplyType == enemyAiScript.resistance)
+        {
+            ReducedDamage();
+        }
+        
+    }
+
     IEnumerator CoolDown()
     {
-         float coolDownTime = coolDownDuration;
+        float coolDownTime = coolDownDuration;
         while (coolDownTime > 0)
         {
             coolDownTime -= Time.deltaTime;
@@ -36,5 +54,13 @@ public class Weapon : Items
         }
         canAttack = true;
         yield break;
+    }
+    private void ReducedDamage()
+    {
+      damage = baseAttackDamage/damageMultiplier;
+    }
+    private void BonusDamage()
+    {
+       damage = baseAttackDamage * damageMultiplier;
     }
 }

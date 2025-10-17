@@ -3,21 +3,35 @@ using UnityEngine;
 public class RangePlantMonster : EnemyAI
 {
     private string projectile;
+   [SerializeField] private float fleeingDistance;
+    [SerializeField] private float fleeingSpeed;
+    [SerializeField]private float shootRange;
+    [SerializeField] private float safeDistance;
 
+    private void Update()
+    {
+        if (distanceFromPlayer > fleeingDistance)
+        {
+            RunAway();
+        }
 
+        if (shootRange == safeDistance)
+        {
+            
+
+        }
+    }
     private void RunAway()
     {
-        //opposite of move towards in the enemyAI script
 
-        //if player is in set range 
-        //moves out of range
-
-
-
+        rigidBody.MovePosition(transform.position - (player.transform.position - transform.position) * fleeingSpeed * Time.fixedDeltaTime);
+        
 
     }
-    private void Shoot()
+
+    public void Shoot()
     {
+      
         //if plant is in range of player
         //instantiate selected projectile ammunition type in intervals
 

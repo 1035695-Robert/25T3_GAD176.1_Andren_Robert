@@ -3,15 +3,23 @@ using Unity.VisualScripting;
 using UnityEngine;
 using SAE.GAD176.SlimeBall.Healing;
 using JetBrains.Annotations;
+using System.Runtime.CompilerServices;
+using System.ComponentModel;
+
 public class MeleeSlime : EnemyAI
 {
+ //  protected override DamageType weakness => DamageType.Fire;
+    
     private float attackRange;
     private int attackPower;
     private SlimeBall slimeball;
     protected int health = 20;
-    public string weakness;
-    public string resistance1;
+   
 
+    private void Start()
+    {
+       
+    }
     private void Attack()
     {
         //if in attackRange
@@ -24,7 +32,6 @@ public class MeleeSlime : EnemyAI
         {
             //seeks closest dropped Item
         }
-
     }
 
     public void AbsorbHeal()
@@ -34,26 +41,7 @@ public class MeleeSlime : EnemyAI
         //destroys dropItems to heal health
         SlimeBall.Destroy(this);
     }
+
+    
 }
-
-/*namespace SAE.GAD176.damageMultiplier.MeleeSlime
-{
-    public class MeleeSlime : EnemyAI
-    {
-
-        public override void SetResistance()
-        {
-            DamageType resistance1 = DamageType.Slash;
-            DamageType resistance2 = DamageType.None;
-            base.SetResistance();
-        }
-        public override void SetWeakness()
-        {
-            DamageType weakness1 = DamageType.Blunt;
-            DamageType weakness2 = DamageType.None;
-            base.SetWeakness();
-        }
-
-    }
-}*/
 

@@ -2,7 +2,7 @@ using Unity.Collections;
 using UnityEngine;
 using SAE.GAD176.SlingShot;
 
-public class Projectile : Items
+public class Projectile : Slingshot
 {
 
     protected int damage;
@@ -24,7 +24,7 @@ public class Projectile : Items
     {
         damage = 0;
     }
-    public virtual void AmmunitionAmoutSet()
+    public virtual void AmmunitionAmountStack()
     {
         maxAmount = 0;
     }
