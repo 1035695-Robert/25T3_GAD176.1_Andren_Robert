@@ -1,60 +1,56 @@
+using System.Collections;
 using UnityEngine;
-
+using SAE.GAD176.Shoot;
+using Unity.VisualScripting;
 public class RangePlantMonster : EnemyAI
 {
-    private string projectile;
-   [SerializeField] private float fleeingDistance;
+    protected GameObject ammo;
+    [SerializeField] private float fleeingDistance;
     [SerializeField] private float fleeingSpeed;
-    [SerializeField]private float shootRange;
     [SerializeField] private float safeDistance;
+    //[SerializeField] private Projectile projectile;
+    [SerializeField] public ProjectileType ammotype = ProjectileType.plantSeed;
+   [SerializeField] private Projectile shot;
 
-    private void Update()
+    public override void EnemyMove()
     {
-        if (distanceFromPlayer > fleeingDistance)
+        if (distanceFromPlayer <= detectionDistance && distanceFromPlayer > attackDistance)
         {
-            RunAway();
+            // move player towards player
+            rigidBody.MovePosition(transform.position + (player.transform.position - transform.position) * movementSpeed * Time.fixedDeltaTime);
+            //work from week 5 class content
         }
-
-        if (shootRange == safeDistance)
+        if (distanceFromPlayer < fleeingDistance)
         {
-            
-
+            StartCoroutine(RunAway());
         }
     }
-    private void RunAway()
-    {
 
-        rigidBody.MovePosition(transform.position - (player.transform.position - transform.position) * fleeingSpeed * Time.fixedDeltaTime);
+    private IEnumerator RunAway()
+    {
+        while (distanceFromPlayer < safeDistance)
+        {
+            rigidBody.MovePosition(transform.position - (player.transform.position - transform.position) * fleeingSpeed * Time.fixedDeltaTime);
+            yield return null;
+        }
+        yield break;
+
+    }
+
+
+    public override void AttackPlayer()
+    {
+       //ammo = GameObject.FindGameObjectWithTag("Projectile");
+
+       //  Debug.Log("pew");
         
-
     }
+}
 
-    public void Shoot()
-    {
-      
+
+        //projectile.Shoot();
         //if plant is in range of player
+
         //instantiate selected projectile ammunition type in intervals
 
-    } 
-}
-/*namespace SAE.GAD176.damageMultiplier.RangePlant
-{
-    public class RangePlantMonster : EnemyAI
-    {
-
-        public override void SetResistance()
-        {
-            DamageType resistance1 = DamageType.Slash;
-            DamageType resistance2 = DamageType.None;
-            base.SetResistance();
-        }
-        public override vo
-
-            DamageType weakness1 = DamageType.Blunt;
-            DamageType weakness2 = DamageType.None;
-
-            base.SetWeakness();
-        }
-
-    }
-}*/
+    

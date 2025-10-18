@@ -1,13 +1,15 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
+using SAE.GAD176.Shoot;
 
-namespace SAE.GAD176.SlingShot
-{
+
+
     public class Slingshot : Weapon
     {
         public float firePower;
         private int maxFirePower = 6;
+        [SerializeField] private ProjectileType seedType = ProjectileType.Undefine;
 
 
         private void DrawBack()
@@ -45,6 +47,6 @@ namespace SAE.GAD176.SlingShot
        
         }
     }
-}
+
 
 

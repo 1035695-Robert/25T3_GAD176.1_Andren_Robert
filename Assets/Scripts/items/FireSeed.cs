@@ -1,17 +1,13 @@
 using UnityEngine;
-
+using SAE.GAD176.Shoot;
 public class FireSeed : Projectile
 {
     private float BurnDuration;
 
-
-    public override void DamageSet()
+   public override void ShootProjectile()
     {
-        damage = 2;
-        base.DamageSet();
+       
     }
-
-   
 
     void Burn()
     {

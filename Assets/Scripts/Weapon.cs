@@ -27,6 +27,7 @@ public class Weapon : Items
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // preforms attack action
+
             canAttack = false;
             StartCoroutine(CoolDown());
         }

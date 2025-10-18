@@ -4,13 +4,18 @@ namespace SAE.GAD176.SlimeBall.Healing
     public class SlimeBall : Items
     {
         public int healingAmount;
-
-        public void healSlime(MeleeSlime meleeSlime)
+        [SerializeField] GameObject slimeEnemy;
+        public MeleeSlime slimeScript;
+        private void Start()
         {
-
-            //heals melee slime on trigger
-            meleeSlime.AbsorbHeal();
+          
         }
-
+        private void OnCollisionEnter(Collision collision)
+        {
+            slimeScript = slimeEnemy.GetComponent<MeleeSlime>();
+        //heals melee slime on trigger
+            slimeScript.AbsorbHeal();
+            //Destroy(this.gameObject);
+        }
     }
 }
