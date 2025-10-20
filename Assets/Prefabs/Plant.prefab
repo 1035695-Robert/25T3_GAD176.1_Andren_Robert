@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8059484188868802087}
   m_Layer: 0
   m_Name: Plant
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: ae59536827893bf45bccc36a6df9ab44, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,20 +125,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: []
-  EnemyHealth: 0
+  maxEnemyHealth: 0
+  enemyHealth: 0
   player: {fileID: 0}
   distanceFromPlayer: 0
   detectionDistance: 20
   attackDistance: 10
   movementSpeed: 2
   enemyName: 
-  weakness: 0
-  resistance: 0
+  weakness: 2
+  resistance: 4
   fleeingDistance: 5
   fleeingSpeed: 2
   safeDistance: 10
   ammotype: 2
-  shot: {fileID: 0}
+  projectile: {fileID: 0}
 --- !u!54 &5694409897129083489
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -199,6 +200,7 @@ GameObject:
   - component: {fileID: 5248453623706560370}
   - component: {fileID: 1253547772959636995}
   - component: {fileID: 3321171763648037144}
+  - component: {fileID: 8429187129724905441}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -297,3 +299,24 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &8429187129724905441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5568341233968308506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72d32ff320abcad4899521ce4fb55b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyAIScript: {fileID: 0}
+  seedName: 2
+  seedDamageType: 0
+  timer: 2
+  seedsAmmo: {fileID: 0}
+  spawnPoint: {fileID: 3564785720062027391}
+  usersSpeed: 10
+  timeAfterShot: 5
+  projectileVelocity: 0

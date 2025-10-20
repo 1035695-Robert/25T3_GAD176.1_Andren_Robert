@@ -8,9 +8,11 @@ public class RangePlantMonster : EnemyAI
     [SerializeField] private float fleeingDistance;
     [SerializeField] private float fleeingSpeed;
     [SerializeField] private float safeDistance;
+
+  
     //[SerializeField] private Projectile projectile;
-    [SerializeField] public ProjectileType ammotype = ProjectileType.plantSeed;
-   [SerializeField] private Projectile shot;
+    [SerializeField] public ProjectilePrefabTypes ammotype = ProjectilePrefabTypes.PlantSeed;
+    [SerializeField] private Projectile projectile;
 
     public override void EnemyMove()
     {
@@ -40,13 +42,15 @@ public class RangePlantMonster : EnemyAI
 
     public override void AttackPlayer()
     {
-       //ammo = GameObject.FindGameObjectWithTag("Projectile");
-
-       //  Debug.Log("pew");
-        
+        if(projectile != null)
+        {
+           projectile =  projectile.GetComponent<Projectile>();
+        }
+       projectile.Shoot();
+        //Debug.Log("pew");
     }
+  
 }
-
 
         //projectile.Shoot();
         //if plant is in range of player

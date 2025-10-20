@@ -4,10 +4,7 @@ public class FireSeed : Projectile
 {
     private float BurnDuration;
 
-   public override void ShootProjectile()
-    {
-       
-    }
+ 
 
     void Burn()
     {

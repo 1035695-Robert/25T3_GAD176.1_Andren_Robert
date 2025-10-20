@@ -10,41 +10,29 @@ public class Weapon : Items
     [SerializeField] protected DamageType damageMultiplyType = DamageType.Undefined;
 
 
-    private int coolDownDuration;
-    private float baseAttackDamage;
-    private float damageMultiplier = 1.5f;
-    private float damage;
+    [SerializeField] protected int coolDownDuration;
+    [SerializeField] private float baseAttackDamage;
+    [SerializeField] private float damageMultiplier = 1.5f;
+    [SerializeField] public float damage;
 
-    protected bool canAttack = true;
-    private EnemyAI enemyAiScript;
+    [SerializeField] protected bool canAttack = true;
+    [SerializeField] protected GameObject[] enemies;
+   
+    [SerializeField] protected EnemyAI enemyAiScript;
 
     private void Start()
     {
-       
+        enemies = GameObject.FindGameObjectsWithTag("enemy");
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            // preforms attack action
+            AttackEnemy();
 
             canAttack = false;
             StartCoroutine(CoolDown());
-        }
-    }
-    private void OnCollisionEnter(Collision attackHit)
-    {
-        if (damageMultiplyType == enemyAiScript.weakness)
-        {
-            BonusDamage();
-        }
-        if (damageMultiplyType == enemyAiScript.resistance)
-        {
-            ReducedDamage();
-        }
-        
-    }
-
+        } 
     IEnumerator CoolDown()
     {
         float coolDownTime = coolDownDuration;
@@ -56,12 +44,42 @@ public class Weapon : Items
         canAttack = true;
         yield break;
     }
-    private void ReducedDamage()
+    }
+    protected void BonusMultiplierDamageCheck()
+    {
+        if (damageMultiplyType == enemyAiScript.weakness)
+        {
+            Debug.Log("strike weakness" + enemyAiScript.weakness);
+            BonusDamage();
+        }
+        if (damageMultiplyType == enemyAiScript.resistance)
+        {
+            Debug.Log("strike Risistance" + enemyAiScript.resistance);
+
+            ReducedDamage();
+        }
+        else
+           enemyAiScript.FinalDamageCount();
+    }
+
+   
+    public virtual void AttackEnemy()
+    {
+        //this gets overridden depending on the weapon the player holds
+    }
+
+
+    protected void ReducedDamage()
     {
       damage = baseAttackDamage/damageMultiplier;
+        Debug.Log("resist damage" + damage);
+        enemyAiScript.FinalDamageCount();
+
     }
-    private void BonusDamage()
+    protected void BonusDamage()
     {
        damage = baseAttackDamage * damageMultiplier;
+        Debug.Log("bonus damage" + damage);
+        enemyAiScript.FinalDamageCount();
     }
 }

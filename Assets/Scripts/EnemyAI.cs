@@ -1,11 +1,17 @@
 using System.Runtime.CompilerServices;
 using Unity.Collections;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEditor;
 using UnityEngine;
-//using SAE.GAD176.damageMultiplier.MeleeSlime;
-//using SAE.GAD176.damageMultiplier.RangePlant;
 
+public enum DropList
+{
+    Undefined,
+    None,
+    SlimeBall,
+    PlantSeed, 
+}
 
 public class EnemyAI : MonoBehaviour
 {
@@ -15,7 +21,9 @@ public class EnemyAI : MonoBehaviour
     //[SerializeField] string[] weakness; AG commented out in preparation of using an ENUM instead
     // [SerializeField] string[] ;
     private bool isDead = false;
-    [SerializeField] protected int EnemyHealth;
+
+    [SerializeField] protected float maxEnemyHealth;
+    [SerializeField] public float enemyHealth;
 
 
    // private string[] dropItem;
@@ -26,20 +34,23 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] protected float detectionDistance;
     [SerializeField] protected float attackDistance;
 
-    [SerializeField] protected float movementSpeed = 2f;
+    [SerializeField] protected float movementSpeed;
     [SerializeField] private string enemyName;
 
     [SerializeField] public DamageType weakness = DamageType.Undefined;
     [SerializeField] public DamageType resistance = DamageType.Undefined;
-    //[SerializeField] private Weapon weaponScript;
+    [SerializeField] private Weapon weaponScript;
+
+    [SerializeField] protected DropList itemList;
+    [SerializeField] GameObject[] dropItem;
+
     //[SerializeField] private Projectile projectileScript;
 
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        // SetResistance();
-        //  SetWeakness();
+        enemyHealth = maxEnemyHealth;
     }
     public virtual void Update()
     {
@@ -84,33 +95,49 @@ public class EnemyAI : MonoBehaviour
 
     public virtual void AttackPlayer()
     {
-        Debug.Log("did nothing"); //if it displayed this log something went wrong thankfully the override method worked wonders.
-        //this function gets overridden by the specified child class for the enemy type. 
-        //since each enemy has a different type of attack method (range or melee)
+        Debug.Log("did nothing");   //if it displayed this log something went wrong thankfully the override method worked wonders.
+                                    //this function gets overridden by the specified child class for the enemy type. 
+                                    //since each enemy has a different type of attack method (range or melee)
     }
-    private void TakeDamage()
+
+    public void FinalDamageCount()
     {
-
-
-        //enemy health -= Weapon.BaseDamage 
-
-        // healthAmount =- weapondamage
-        EnemyKilled();
+        weaponScript = gameObject.GetComponent<Weapon>();
+        enemyHealth -= weaponScript.damage;
+        Debug.Log(enemyHealth + " hp LEFT");
+        if(enemyHealth <= 0)
+        {
+            EnemyKilled();
+        }
     }
+
     private void EnemyKilled()
     {
         //checks if health is 0 or below
-        if (EnemyHealth > 0)
+        if (enemyHealth > 0)
         {
             //if below 0 set isDead to true.
             isDead = true;
-            //dropItem();
+            //drops items
             DropItems();
         }
 
     }
     private void DropItems()
     {
+       switch(itemList)
+        {
+            case DropList.None:
+                {
+                    break;
+                }
+            case DropList.SlimeBall:
+                {
+                    //Instantiate()
+                    break;
+                }
+        }
+
         //drops item on death
         //override item type based on enemy type
     }
