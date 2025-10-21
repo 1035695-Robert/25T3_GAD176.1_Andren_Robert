@@ -74,7 +74,11 @@ namespace StarterAssets
 
 		private const float _threshold = 0.01f;
 
-		private bool IsCurrentDeviceMouse
+
+  
+
+
+        private bool IsCurrentDeviceMouse
 		{
 			get
 			{
@@ -108,13 +112,16 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
-		}
+
+         
+        }
 
 		private void Update()
 		{
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+
 		}
 
 		private void LateUpdate()

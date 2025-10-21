@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using Unity.Collections;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
@@ -20,13 +22,14 @@ public class EnemyAI : MonoBehaviour
     private Vector3 spawn;
     //[SerializeField] string[] weakness; AG commented out in preparation of using an ENUM instead
     // [SerializeField] string[] ;
-    private bool isDead = false;
+   [SerializeField] protected bool isDead = false;
 
     [SerializeField] protected float maxEnemyHealth;
     [SerializeField] public float enemyHealth;
 
+    [SerializeField] protected GameObject enemy;
 
-   // private string[] dropItem;
+    // private string[] dropItem;
     protected Rigidbody rigidBody;
     [SerializeField] protected Transform player;
 
@@ -34,15 +37,21 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] protected float detectionDistance;
     [SerializeField] protected float attackDistance;
 
+    
     [SerializeField] protected float movementSpeed;
     [SerializeField] private string enemyName;
+    [SerializeField] protected float coolDownTime;
+    [SerializeField] protected bool checkAttack = true;
 
     [SerializeField] public DamageType weakness = DamageType.Undefined;
     [SerializeField] public DamageType resistance = DamageType.Undefined;
-    [SerializeField] private Weapon weaponScript;
+    [SerializeField] private DamageMultiplier damageScript;
+
+    [SerializeField] public float damageReceived;
 
     [SerializeField] protected DropList itemList;
-    [SerializeField] GameObject[] dropItem;
+    [SerializeField] private GameObject slimeball;
+    [SerializeField] private GameObject plantseed;
 
     //[SerializeField] private Projectile projectileScript;
 
@@ -51,6 +60,7 @@ public class EnemyAI : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         enemyHealth = maxEnemyHealth;
+        enemy = this.gameObject;
     }
     public virtual void Update()
     {
@@ -60,13 +70,32 @@ public class EnemyAI : MonoBehaviour
         //detects if player is in range
         if (distanceFromPlayer <= detectionDistance)
         {
+            rigidBody.transform.LookAt(new Vector3 (player.position.x, transform.position.y, player.position.z));
             EnemyMove();
         }
-        if (distanceFromPlayer <= attackDistance)
+        if (distanceFromPlayer <= attackDistance && checkAttack == true)
         {
-            AttackPlayer();
+            checkAttack = false;
+
+
+
+            StartCoroutine(NextAttack());
+
         }
 
+    }
+    IEnumerator NextAttack()
+    {
+        AttackPlayer();
+        
+        float waitTime = coolDownTime;
+        while (waitTime > 0)
+        {
+            waitTime -= Time.deltaTime;
+            yield return null;
+        }
+        checkAttack = true;
+        yield break;
     }
     static void Main(string[] enemytype)
     {
@@ -102,8 +131,8 @@ public class EnemyAI : MonoBehaviour
 
     public void FinalDamageCount()
     {
-        weaponScript = gameObject.GetComponent<Weapon>();
-        enemyHealth -= weaponScript.damage;
+        damageScript = gameObject.GetComponent<DamageMultiplier>();
+        enemyHealth -= damageReceived;
         Debug.Log(enemyHealth + " hp LEFT");
         if(enemyHealth <= 0)
         {
@@ -114,30 +143,36 @@ public class EnemyAI : MonoBehaviour
     private void EnemyKilled()
     {
         //checks if health is 0 or below
-        if (enemyHealth > 0)
-        {
-            //if below 0 set isDead to true.
+           
             isDead = true;
             //drops items
             DropItems();
-        }
-
+       
     }
+   
     private void DropItems()
     {
        switch(itemList)
         {
-            case DropList.None:
+                case DropList.None:
                 {
                     break;
                 }
-            case DropList.SlimeBall:
+                case DropList.SlimeBall:
                 {
-                    //Instantiate()
-                    break;
-                }
-        }
+                    Debug.Log("slimeball");
+                    Instantiate(slimeball, transform.position, Quaternion.identity);
 
+                    break;
+                }
+                case DropList.PlantSeed:
+                {
+                    Instantiate(plantseed);
+                    break;
+                }
+
+        }
+       
         //drops item on death
         //override item type based on enemy type
     }

@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
@@ -6,14 +7,20 @@ using Unity.VisualScripting;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
+
+
 public class Sword : Weapon
 {
    // [SerializeField] private int attackPower;
    
-    [SerializeField] private GameObject sword;
+    [SerializeField] private GameObject swordRotationOigin;
     [SerializeField] float swingSword;
+    [SerializeField] DamageMultiplier damageScript;
 
-   
+    internal static void SetActive(bool v)
+    {
+        throw new NotImplementedException();
+    }
 
     public override void AttackEnemy()
 
@@ -26,7 +33,7 @@ public class Sword : Weapon
     public IEnumerator SwordSwing()
     { float attackTimer = coolDownDuration;
         //transform: can edit interface transform X,Y,Z were as vector3 can only effects position
-        sword.transform.localRotation = Quaternion.Euler(90f, 0, 0);  //localRotation effects the rotation of the object it is attached to on the (X,Y,Z) axis.
+        swordRotationOigin.transform.localRotation = Quaternion.Euler(90f, 0, 0);  //localRotation effects the rotation of the object it is attached to on the (X,Y,Z) axis.
 
         while (attackTimer >= 0)
         {
@@ -36,17 +43,10 @@ public class Sword : Weapon
             yield return null;
 
         }
-        sword.transform.localRotation = Quaternion.Euler(30f, 0, 0);
+        swordRotationOigin.transform.localRotation = Quaternion.Euler(30f, 0, 0);
         yield break;
     }
-    private void OnTriggerEnter(Collider attackHit)
-    {
-        if (attackHit.gameObject.CompareTag("enemy") && canAttack == false)
-        {
-            enemyAiScript = attackHit.gameObject.GetComponent<EnemyAI>();
-            BonusMultiplierDamageCheck();
-        } 
-}
+    
 
 
 

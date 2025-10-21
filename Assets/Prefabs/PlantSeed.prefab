@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1640754219656678728}
   - component: {fileID: 1891534100053415334}
   - component: {fileID: 8115525878151240539}
+  - component: {fileID: 1603507609653489356}
   - component: {fileID: -522432718841973336}
   m_Layer: 0
   m_Name: PlantSeed
@@ -122,15 +123,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a965f8aba455f5849a187ee655d0320a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAIScript: {fileID: 0}
-  seedName: 0
-  seedDamageType: 0
-  timer: 1
-  seedsAmmo: {fileID: 5489630187450635394}
-  spawnPoint: {fileID: 3170347857688668940, guid: 540fe23c2deee9945ac226a8ef6e1da1, type: 3}
-  usersSpeed: 5
-  timeAfterShot: 10
   projectileVelocity: 2
+--- !u!114 &1603507609653489356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5489630187450635394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aea125e7c4acf54394e6c8814b32f75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseAttackDamage: 2
+  damage: 0
+  enemylist: []
 --- !u!54 &-522432718841973336
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -156,5 +164,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0

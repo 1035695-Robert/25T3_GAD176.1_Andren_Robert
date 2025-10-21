@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.ComponentModel;
 using UnityEditor.Experimental.GraphView;
 using System.Globalization;
+using UnityEngine.InputSystem.Processors;
 
 public class MeleeSlime : EnemyAI
 {
@@ -19,7 +20,7 @@ public class MeleeSlime : EnemyAI
     [SerializeField] private float healthLow;
     [SerializeField] public float healAmount;
     [SerializeField] private float lowHealthMovement;
-   // [SerializeField] public bool oneTimeHealSlimeBall = false; 
+    public bool oneTimeHealSlimeBall = false; 
    
 
 
@@ -38,7 +39,7 @@ public class MeleeSlime : EnemyAI
     {  // distance from player  detection 
 
 
-        if (enemyHealth <= healthLow)
+        if (enemyHealth <= healthLow && oneTimeHealSlimeBall == false && isDead == false)
         {
             LowHealthFlee();
         }
@@ -79,8 +80,8 @@ public class MeleeSlime : EnemyAI
             if ( enemyHealth >= maxEnemyHealth)     // i need to pay more attention to if it is greater or lesser than as it can mess up the whole script if not written properly.
             {
                 enemyHealth = maxEnemyHealth;       //this now works as intended: small error on my end as i had the wrong calculation.
-            }                                      
-            // oneTimeHealSlimeBall = true          //this bool is no longer used as i had some issues with the enemy constantly trying to seek gameobjects and broke the game, but this is kept here as if i wanted to have the enemy can only heal once. this would be added in movment function for checking health in the if statement
+            }
+            oneTimeHealSlimeBall = true;      //this bool is no longer used as i had some issues with the enemy constantly trying to seek gameobjects and broke the game, but this is kept here as if i wanted to have the enemy can only heal once. this would be added in movment function for checking health in the if statement
             Destroy(DroppedItem.gameObject);
         }
     }

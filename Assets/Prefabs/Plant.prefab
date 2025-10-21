@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 874066086095093830}
   - component: {fileID: 2745814535043160867}
   - component: {fileID: 760789853143893872}
+  - component: {fileID: 5587710732864402468}
   - component: {fileID: 5694409897129083489}
-  - component: {fileID: 8059484188868802087}
   m_Layer: 0
   m_Name: Plant
   m_TagString: enemy
@@ -125,21 +125,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: []
-  maxEnemyHealth: 0
+  isDead: 0
+  maxEnemyHealth: 10
   enemyHealth: 0
+  enemy: {fileID: 0}
   player: {fileID: 0}
   distanceFromPlayer: 0
   detectionDistance: 20
   attackDistance: 10
   movementSpeed: 2
   enemyName: 
+  coolDownTime: 5
+  checkAttack: 1
   weakness: 2
   resistance: 4
+  damageScript: {fileID: 0}
+  damageReceived: 0
+  itemList: 3
+  slimeball: {fileID: 5134470832077211632, guid: 36fa69b88f5dc514dac77207b7153987, type: 3}
+  plantseed: {fileID: 5489630187450635394, guid: f10ded591892a904291fd3bfb7e92f24, type: 3}
   fleeingDistance: 5
   fleeingSpeed: 2
   safeDistance: 10
-  ammotype: 2
-  projectile: {fileID: 0}
+  shootScript: {fileID: 0}
+--- !u!114 &5587710732864402468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3697287524030911292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce715012305b2064ebb234e8920b9540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seedsAmmo: {fileID: 0}
+  spawnPoint: {fileID: 3564785720062027391}
+  projectileVelocity: 750
+  timeAfterShot: 10
+  plantSeed: {fileID: 5489630187450635394, guid: f10ded591892a904291fd3bfb7e92f24, type: 3}
+  fireSeed: {fileID: 5489630187450635394, guid: a140b9e438d58474091e7dd5730b8fc9, type: 3}
+  seedName: 1
 --- !u!54 &5694409897129083489
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -167,27 +194,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &8059484188868802087
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3697287524030911292}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 4
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5568341233968308506
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,12 +317,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d32ff320abcad4899521ce4fb55b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAIScript: {fileID: 0}
-  seedName: 2
-  seedDamageType: 0
-  timer: 2
-  seedsAmmo: {fileID: 0}
-  spawnPoint: {fileID: 3564785720062027391}
-  usersSpeed: 10
-  timeAfterShot: 5
   projectileVelocity: 0

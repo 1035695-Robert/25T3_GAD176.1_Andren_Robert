@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1311523958762343702}
   - component: {fileID: 7941821692248786379}
   - component: {fileID: 8708722665341393814}
+  - component: {fileID: 4640149474067490723}
   m_Layer: 0
   m_Name: slingshot
   m_TagString: Untagged
@@ -28,9 +29,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9134677963750599091}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 1, z: 0.3}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.4, y: 1, z: 0.8}
+  m_LocalScale: {x: 0.1, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -122,7 +123,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: []
-  damageMultiplyType: 0
-  firePower: 0
-  attackPoint: {x: 0, y: 0, z: 0}
-  seedType: 2
+  weapon: {fileID: 0}
+  coolDownDuration: 0
+  canAttack: 1
+  enemies: []
+  enemyAiScript: {fileID: 0}
+  shootScript: {fileID: 0}
+--- !u!114 &4640149474067490723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9134677963750599091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce715012305b2064ebb234e8920b9540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seedsAmmo: {fileID: 0}
+  spawnPoint: {fileID: 3170347857688668940}
+  projectileVelocity: 3000
+  timeAfterShot: 10
+  plantSeed: {fileID: 5489630187450635394, guid: f10ded591892a904291fd3bfb7e92f24, type: 3}
+  fireSeed: {fileID: 5489630187450635394, guid: a140b9e438d58474091e7dd5730b8fc9, type: 3}
+  seedName: 1
