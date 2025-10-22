@@ -6,6 +6,8 @@ TagManager:
   tags:
   - CinemachineTarget
   - droppedItems
+  - enemy
+  - weapon
   layers:
   - Default
   - TransparentFX

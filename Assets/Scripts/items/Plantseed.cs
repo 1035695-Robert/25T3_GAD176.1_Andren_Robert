@@ -7,18 +7,6 @@ using NUnit.Framework.Constraints;
 
 public class Plantseed : Projectile
 {
- 
-    GameObject plantSeed;
+
     
-   /* public override void ShootProjectile()
-    {  
-      GameObject currentSelectedSeed = Instantiate(plantSeed, attackPoint.position, Quaternion.identity);
-    }*/
-
-
-   
-   
-    
-
-
 }

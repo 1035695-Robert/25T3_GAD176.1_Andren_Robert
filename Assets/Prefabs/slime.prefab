@@ -134,18 +134,17 @@ MonoBehaviour:
   enemyName: 
   coolDownTime: 0
   checkAttack: 1
-  weakness: 0
-  resistance: 0
-  damageScript: {fileID: 0}
+  weakness: 3
+  resistance: 4
   damageReceived: 0
   itemList: 2
   slimeball: {fileID: 5134470832077211632, guid: 36fa69b88f5dc514dac77207b7153987, type: 3}
   plantseed: {fileID: 5489630187450635394, guid: f10ded591892a904291fd3bfb7e92f24, type: 3}
+  damageScript: {fileID: 0}
   slimeDrops: {fileID: 0}
   healthLow: 5
   healAmount: 2
   lowHealthMovement: 0.5
-  oneTimeHealSlimeBall: 0
 --- !u!54 &6460196178987874516
 Rigidbody:
   m_ObjectHideFlags: 0

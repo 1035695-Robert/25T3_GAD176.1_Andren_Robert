@@ -20,7 +20,7 @@ public class MeleeSlime : EnemyAI
     [SerializeField] private float healthLow;
     [SerializeField] public float healAmount;
     [SerializeField] private float lowHealthMovement;
-    public bool oneTimeHealSlimeBall = false; 
+    //public bool oneTimeHealSlimeBall = false; 
    
 
 
@@ -39,7 +39,7 @@ public class MeleeSlime : EnemyAI
     {  // distance from player  detection 
 
 
-        if (enemyHealth <= healthLow && oneTimeHealSlimeBall == false && isDead == false)
+        if (enemyHealth <= healthLow && isDead == false)
         {
             LowHealthFlee();
         }
@@ -55,15 +55,22 @@ public class MeleeSlime : EnemyAI
      {
       // Having the slime only heal once   
          //when low on health
-                if(slimeDrops == null)
+         
+                if(slimeDrops != null)
          {   
-             slimeDrops = GameObject.FindGameObjectWithTag("droppedItems");
+                slimeDrops = (GameObject.FindGameObjectWithTag("droppedItms"));
                 Debug.Log("found drop item"); // this part is working fine: 
             
          }
-        //seeks closest dropped Item
-       //if gmaeobject is found for slimeball then do this:
-             rigidBody.MovePosition(transform.position + (slimeDrops.transform.position - transform.position) * lowHealthMovement * Time.fixedDeltaTime);
+        if (slimeDrops == null)
+        {
+            rigidBody.MovePosition(transform.position + (player.transform.position - transform.position) * movementSpeed * Time.fixedDeltaTime);
+            return;
+        }
+        else
+            //seeks closest dropped Item
+            //if gmaeobject is found for slimeball then do this:
+            rigidBody.MovePosition(transform.position + (slimeDrops.transform.position - transform.position) * lowHealthMovement * Time.fixedDeltaTime);
          //else return
      }
     private void OnCollisionEnter(Collision DroppedItem)
@@ -81,7 +88,7 @@ public class MeleeSlime : EnemyAI
             {
                 enemyHealth = maxEnemyHealth;       //this now works as intended: small error on my end as i had the wrong calculation.
             }
-            oneTimeHealSlimeBall = true;      //this bool is no longer used as i had some issues with the enemy constantly trying to seek gameobjects and broke the game, but this is kept here as if i wanted to have the enemy can only heal once. this would be added in movment function for checking health in the if statement
+            //oneTimeHealSlimeBall = true;      //this bool is no longer used as i had some issues with the enemy constantly trying to seek gameobjects and broke the game, but this is kept here as if i wanted to have the enemy can only heal once. this would be added in movment function for checking health in the if statement
             Destroy(DroppedItem.gameObject);
         }
     }

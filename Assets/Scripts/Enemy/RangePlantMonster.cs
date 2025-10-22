@@ -13,6 +13,7 @@ public class RangePlantMonster : EnemyAI
     //[SerializeField] private Projectile projectile;
 
     [SerializeField] private Shoot shootScript;
+    [SerializeField] private DamageMultiplier damageMultiplierScript;
     public override void EnemyMove()
     {
         if (distanceFromPlayer <= detectionDistance && distanceFromPlayer > attackDistance)
@@ -42,6 +43,7 @@ public class RangePlantMonster : EnemyAI
     public override void AttackPlayer()
     {
         shootScript = gameObject.GetComponent<Shoot>();
+        
         shootScript.SetSeedType();
     }
   

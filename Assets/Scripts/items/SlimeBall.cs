@@ -1,7 +1,7 @@
 using UnityEngine;
 namespace SAE.GAD176.SlimeBall.Healing
 {
-    public class SlimeBall : Items
+    public class SlimeBall : DropItems
     {
         [SerializeField]public float healingAmount = 3.0f;
         

@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Transactions;
 using UnityEngine;
 
@@ -14,8 +15,11 @@ public class Shoot : MonoBehaviour
     [SerializeField] public ProjectilePrefabTypes seedName = ProjectilePrefabTypes.None;
 
 
-
-
+  
+    private void Awake()
+    {
+       
+    }
 
     private void Start()
     {
@@ -56,9 +60,12 @@ public class Shoot : MonoBehaviour
     { 
 
    
-         GameObject seedObject = Instantiate(seedsAmmo, transform.position, transform.rotation) as GameObject;
-         seedObject.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, projectileVelocity));
-        
+         GameObject seedObject = Instantiate(seedsAmmo, spawnPoint.transform.position, transform.rotation) as GameObject;
+       
+        seedObject.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, projectileVelocity));
+          
        Destroy(seedObject, timeAfterShot);
     }
+
+ 
 }

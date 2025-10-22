@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -522432718841973336}
   m_Layer: 0
   m_Name: FireSeed
-  m_TagString: Untagged
+  m_TagString: weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,6 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseAttackDamage: 2
   damage: 0
+  damageMultiplyType: 2
   enemylist: []
 --- !u!54 &-522432718841973336
 Rigidbody:

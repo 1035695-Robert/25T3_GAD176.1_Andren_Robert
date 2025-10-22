@@ -7,13 +7,6 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEditor;
 using UnityEngine;
 
-public enum DropList
-{
-    Undefined,
-    None,
-    SlimeBall,
-    PlantSeed, 
-}
 
 public class EnemyAI : MonoBehaviour
 {
@@ -27,7 +20,6 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] protected float maxEnemyHealth;
     [SerializeField] public float enemyHealth;
 
-    [SerializeField] protected GameObject enemy;
 
     // private string[] dropItem;
     protected Rigidbody rigidBody;
@@ -45,13 +37,14 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] public DamageType weakness = DamageType.Undefined;
     [SerializeField] public DamageType resistance = DamageType.Undefined;
-    [SerializeField] private DamageMultiplier damageScript;
 
     [SerializeField] public float damageReceived;
 
     [SerializeField] protected DropList itemList;
     [SerializeField] private GameObject slimeball;
     [SerializeField] private GameObject plantseed;
+
+    [SerializeField] protected DamageMultiplier damageScript;
 
     //[SerializeField] private Projectile projectileScript;
 
@@ -60,9 +53,10 @@ public class EnemyAI : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         enemyHealth = maxEnemyHealth;
-        enemy = this.gameObject;
+         
+
     }
-    public virtual void Update()
+    private void Update()
     {
         //detection tutorial video by Online Code Coaching "enemy Agro - attack player when too close
         //set range detection
@@ -77,11 +71,9 @@ public class EnemyAI : MonoBehaviour
         {
             checkAttack = false;
 
-
-
             StartCoroutine(NextAttack());
-
         }
+        
 
     }
     IEnumerator NextAttack()
@@ -131,7 +123,9 @@ public class EnemyAI : MonoBehaviour
 
     public void FinalDamageCount()
     {
-        damageScript = gameObject.GetComponent<DamageMultiplier>();
+        
+       
+        Debug.Log(damageReceived + " hit damage" + this.gameObject.name);
         enemyHealth -= damageReceived;
         Debug.Log(enemyHealth + " hp LEFT");
         if(enemyHealth <= 0)
@@ -147,7 +141,7 @@ public class EnemyAI : MonoBehaviour
             isDead = true;
             //drops items
             DropItems();
-       
+        Destroy(this.gameObject);
     }
    
     private void DropItems()
@@ -167,7 +161,7 @@ public class EnemyAI : MonoBehaviour
                 }
                 case DropList.PlantSeed:
                 {
-                    Instantiate(plantseed);
+                    Instantiate(plantseed, transform.position, Quaternion.identity);
                     break;
                 }
 

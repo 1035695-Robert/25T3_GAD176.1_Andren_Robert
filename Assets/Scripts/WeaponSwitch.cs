@@ -27,17 +27,16 @@ public class WeaponSwitch : MonoBehaviour
             {
                 case "1":
                     {
-                        Debug.Log("sword");
-                        sword.SetActive(true);
-                        slingshot = GameObject.Find("slingshot");
-                        if (slingshot != null) slingshot.SetActive(false);
+                        {   
+                            slingshot.SetActive(false);
+                            sword.SetActive(true);
+                        }
                         break;
                     }
                 case "2":
                     {
-                        Debug.Log("slingshot");
-                        slingshot.SetActive(!slingshot.activeSelf);
-                        if (sword != null) sword.SetActive(false);
+                        slingshot.SetActive(true);
+                        sword.SetActive(false);
                         break;
                     }
 
