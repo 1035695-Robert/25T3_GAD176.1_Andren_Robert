@@ -15,23 +15,11 @@ public class Shoot : MonoBehaviour
     [SerializeField] public ProjectilePrefabTypes seedName = ProjectilePrefabTypes.None;
 
 
-  
-    private void Awake()
-    {
-       
-    }
-
-    private void Start()
-    {
-       
-    }
-
-
     public void SetSeedType()
     { 
         switch (seedName)
         {
-            case ProjectilePrefabTypes.None:
+            case ProjectilePrefabTypes.None:   
                 {
                     Debug.Log("not set seed");
                     break; 
@@ -60,11 +48,11 @@ public class Shoot : MonoBehaviour
     { 
 
    
-         GameObject seedObject = Instantiate(seedsAmmo, spawnPoint.transform.position, transform.rotation) as GameObject;
+         GameObject seedObject = Instantiate(seedsAmmo, spawnPoint.transform.position, transform.rotation) as GameObject; 
        
-        seedObject.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, projectileVelocity));
+        seedObject.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, projectileVelocity)); //this allows the seed/ammo to be propelled forward.
           
-       Destroy(seedObject, timeAfterShot);
+       Destroy(seedObject, timeAfterShot); //if the gameobject isnt already destroyed from on trigger in the projectiles script it will destory them here after a set amount of time
     }
 
  

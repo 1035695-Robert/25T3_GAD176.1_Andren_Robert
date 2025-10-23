@@ -213,6 +213,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3170347857688668940, guid: 540fe23c2deee9945ac226a8ef6e1da1, type: 3}
   m_PrefabInstance: {fileID: 1384956546}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &418384656
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 132459821932128400, guid: 36fa69b88f5dc514dac77207b7153987, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.283856
+      objectReference: {fileID: 0}
+    - target: {fileID: 132459821932128400, guid: 36fa69b88f5dc514dac77207b7153987, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 132459821932128400, guid: 36fa69b88f5dc514dac77207b7153987, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.42374
+      objectReference: {fileID: 0}
+    - target: {fileID: 132459821932128400, guid: 36fa69b88f5dc514dac77207b7153987, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 132459821932128400, guid: 36fa69b88f5dc514dac77207b7153987, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 132459821932128400, guid: 36fa69b88f5dc514dac77207b7153987, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 132459821932128400, guid: 36fa69b88f5dc514dac77207b7153987, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 132459821932128400, guid: 36fa69b88f5dc514dac77207b7153987, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 132459821932128400, guid: 36fa69b88f5dc514dac77207b7153987, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 132459821932128400, guid: 36fa69b88f5dc514dac77207b7153987, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5134470832077211632, guid: 36fa69b88f5dc514dac77207b7153987, type: 3}
+      propertyPath: m_Name
+      value: SlimeBall
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 36fa69b88f5dc514dac77207b7153987, type: 3}
 --- !u!1001 &422536512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -675,6 +732,67 @@ LightProbeGroup:
   - {x: 7.1518564, y: 2.7763042, z: -11.2319765}
   - {x: 8.993203, y: 2.3566551, z: -8.796325}
   m_Dering: 1
+--- !u!1001 &981288561
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7903107348905120727, guid: d57046f65b9984041846d7c443423927, type: 3}
+      propertyPath: slimeDrops
+      value: 
+      objectReference: {fileID: 5134470832077211632, guid: 36fa69b88f5dc514dac77207b7153987, type: 3}
+    - target: {fileID: 8693163746204750493, guid: d57046f65b9984041846d7c443423927, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.0129242
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693163746204750493, guid: d57046f65b9984041846d7c443423927, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.49999952
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693163746204750493, guid: d57046f65b9984041846d7c443423927, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693163746204750493, guid: d57046f65b9984041846d7c443423927, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693163746204750493, guid: d57046f65b9984041846d7c443423927, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693163746204750493, guid: d57046f65b9984041846d7c443423927, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693163746204750493, guid: d57046f65b9984041846d7c443423927, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693163746204750493, guid: d57046f65b9984041846d7c443423927, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693163746204750493, guid: d57046f65b9984041846d7c443423927, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693163746204750493, guid: d57046f65b9984041846d7c443423927, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9151262769808788358, guid: d57046f65b9984041846d7c443423927, type: 3}
+      propertyPath: m_Name
+      value: slime (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d57046f65b9984041846d7c443423927, type: 3}
 --- !u!1 &1028513131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1523,6 +1641,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7983299776059399827, guid: 851323782f7df36459b6734b04be5f77, type: 3}
+      propertyPath: coolDownDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983299776059399827, guid: 851323782f7df36459b6734b04be5f77, type: 3}
       propertyPath: swordRotationOigin
       value: 
       objectReference: {fileID: 78311207}
@@ -1548,3 +1670,5 @@ SceneRoots:
   - {fileID: 1943901572}
   - {fileID: 422536512}
   - {fileID: 178146908}
+  - {fileID: 418384656}
+  - {fileID: 981288561}

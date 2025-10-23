@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using SAE.GAD176.Shoot;
 using Unity.VisualScripting;
+using NUnit.Framework.Constraints;
 public class RangePlantMonster : EnemyAI
 {
     protected GameObject ammo;
@@ -16,21 +17,21 @@ public class RangePlantMonster : EnemyAI
     [SerializeField] private DamageMultiplier damageMultiplierScript;
     public override void EnemyMove()
     {
-        if (distanceFromPlayer <= detectionDistance && distanceFromPlayer > attackDistance)
+        if (distanceFromPlayer <= detectionDistance && distanceFromPlayer > attackDistance) //if enemy is in range of player move closer
         {
             // move player towards player
             rigidBody.MovePosition(transform.position + (player.transform.position - transform.position) * movementSpeed * Time.fixedDeltaTime);
             //work from week 5 class content
         }
-        if (distanceFromPlayer < fleeingDistance)
+        if (distanceFromPlayer < fleeingDistance)       //detects if the player is too close to it, 
         {
-            StartCoroutine(RunAway());
+            StartCoroutine(RunAway());                  //starting a coroutine to make the enemy flee. this occasionally has some issues where the game object clips through walls since it moves in a set determined direction.
         }
     }
 
     private IEnumerator RunAway()
     {
-        while (distanceFromPlayer < safeDistance)
+        while (distanceFromPlayer < safeDistance)       //while it continues to move away it checks if its now at a safe distance
         {
             rigidBody.MovePosition(transform.position - (player.transform.position - transform.position) * fleeingSpeed * Time.fixedDeltaTime);
             yield return null;

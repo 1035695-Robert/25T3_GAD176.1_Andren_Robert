@@ -50,8 +50,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
-        rigidBody = GetComponent<Rigidbody>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        rigidBody = GetComponent<Rigidbody>();                              //finds the game objects rigidbody allowing this script to move the enemy around 
+        player = GameObject.FindGameObjectWithTag("Player").transform;     // this locates the player as it ends up helping the enemies to be able to know where the player is
         enemyHealth = maxEnemyHealth;
          
 
@@ -60,23 +60,23 @@ public class EnemyAI : MonoBehaviour
     {
         //detection tutorial video by Online Code Coaching "enemy Agro - attack player when too close
         //set range detection
-        distanceFromPlayer = Vector3.Distance(player.position, transform.position);
+        distanceFromPlayer = Vector3.Distance(player.position, transform.position);                 //here it sets a vector of were the player position is and allows the enemy to know how far away the player is from an enemy
         //detects if player is in range
         if (distanceFromPlayer <= detectionDistance)
         {
-            rigidBody.transform.LookAt(new Vector3 (player.position.x, transform.position.y, player.position.z));
+            rigidBody.transform.LookAt(new Vector3 (player.position.x, transform.position.y, player.position.z)); //LookAt uses rotations to rotate the enemies towards the player
             EnemyMove();
         }
-        if (distanceFromPlayer <= attackDistance && checkAttack == true)
+        if (distanceFromPlayer <= attackDistance && checkAttack == true)  // detects when player is close in set range and will do its attack action 
         {
-            checkAttack = false;
-
-            StartCoroutine(NextAttack());
+            checkAttack = false;                                         // waits till enemy cooldown has eneded
+            StartCoroutine(NextAttack());                                  //starts the nextattack cooldown when that ends it will be able to attack again
         }
         
 
     }
-    IEnumerator NextAttack()
+    IEnumerator NextAttack() //similar idea for the weapon attack 
+        //this could of been put into its own script that weapons and enemies used reducing the repeativeness of the coding.
     {
         AttackPlayer();
         
@@ -89,20 +89,9 @@ public class EnemyAI : MonoBehaviour
         checkAttack = true;
         yield break;
     }
-    static void Main(string[] enemytype)
-    {
-        RangePlantMonster plant = new RangePlantMonster();
-        MeleeSlime slime = new MeleeSlime();
 
-        plant.AttackPlayer();
-        slime.AttackPlayer();
-
-        plant.EnemyMove();
-        slime.EnemyMove();
-    }
-
-
-    private void SpawnEnemy()
+    // this was never implemented as i didnt have enough time but im leaving it here showing it was in plans but was a stretch goal.
+    private void SpawnEnemy() 
     {
         //spawn enemy at random vector3 postition
 
@@ -126,7 +115,8 @@ public class EnemyAI : MonoBehaviour
         
        
         Debug.Log(damageReceived + " hit damage" + this.gameObject.name);
-        enemyHealth -= damageReceived;
+        enemyHealth -= damageReceived; //is is were the damage is provided after it runs through the damageMultiplier script. 
+        //had some issue with the value being sent across since i was originally trying to get the value from this script it wasnt working so i sent it from the other script and it seems to work fine now.
         Debug.Log(enemyHealth + " hp LEFT");
         if(enemyHealth <= 0)
         {
@@ -140,7 +130,7 @@ public class EnemyAI : MonoBehaviour
            
             isDead = true;
             //drops items
-            DropItems();
+            DropItems();           
         Destroy(this.gameObject);
     }
    
@@ -152,14 +142,14 @@ public class EnemyAI : MonoBehaviour
                 {
                     break;
                 }
-                case DropList.SlimeBall:
-                {
-                    Debug.Log("slimeball");
-                    Instantiate(slimeball, transform.position, Quaternion.identity);
+                case DropList.SlimeBall:        //if the selected item from the enum is one of these it will drop that corrosponding item.
+                {                               //if slimeball was selected then it will Instantiate a slimeball same with the plantseed. 
+                    Debug.Log("slimeball"); 
+                    Instantiate(slimeball, transform.position, Quaternion.identity); 
 
                     break;
                 }
-                case DropList.PlantSeed:
+                case DropList.PlantSeed:       
                 {
                     Instantiate(plantseed, transform.position, Quaternion.identity);
                     break;

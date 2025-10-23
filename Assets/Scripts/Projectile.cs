@@ -14,12 +14,11 @@ namespace SAE.GAD176.Shoot
     public class Projectile : MonoBehaviour
     {
 
-        private void OnTriggerEnter(Collider hitEnemy)
+        private void OnTriggerEnter(Collider other)
         {
-            if (hitEnemy.gameObject.CompareTag("enemy"))
-            {
+           
                 Destroy(this.gameObject);
-            }
+            
         }
     }
 

@@ -5,7 +5,7 @@ public class FireSeed : Projectile
     private float BurnDuration;
 
  
-
+    //
     void Burn()
     {
 

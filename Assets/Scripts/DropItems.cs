@@ -16,10 +16,10 @@ public class DropItems : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void OnTriggerEnter(Collider playerDetect)
     {
-        if (playerDetect.gameObject.CompareTag("Player"))
+        if (playerDetect.gameObject.CompareTag("Player")) // similarly to when enemy is hit with projectile or weapon, this trigger can only be accessed by an object with a player tag.
         {
             Debug.Log("pickup");
-            Destroy(this.gameObject);
+            Destroy(this.gameObject); //since i didnt have an actual inventory i never had a way to store these items. i was  going to have ammo/seed value incease but it would of caused alot more time to create another script for such thing.
             //allow the player to pick up an item
             
 

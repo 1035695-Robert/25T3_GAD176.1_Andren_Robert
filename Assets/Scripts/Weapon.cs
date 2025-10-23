@@ -14,7 +14,7 @@ public class Weapon : Items
 
     [SerializeField] GameObject weapon;
 
-    [SerializeField] protected int coolDownDuration;
+    [SerializeField] protected float coolDownDuration;
     
 
     [SerializeField] protected bool canAttack = true;
@@ -30,26 +30,26 @@ public class Weapon : Items
     }
     private void Update()
     {
-        enemies = GameObject.FindGameObjectsWithTag("enemy");
+        enemies = GameObject.FindGameObjectsWithTag("enemy");   //finds all thegameobjects with the tag enemy.
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canAttack == true)  //            
         {
-            weapon.GetComponent<BoxCollider>().enabled = true;
-            AttackEnemy();
-            canAttack = false;
+            weapon.GetComponent<BoxCollider>().enabled = true;      //having the box collider turn off mainly for the sword this means if an enemy runs up against you it wont take damge until you actually attack.
+            AttackEnemy();                                          // calls the attack functions
+            canAttack = false;                                       //can attack helps set a switch on or off for when the player can attack next.
             StartCoroutine(CoolDown());
         }
     }
-    IEnumerator CoolDown()
+    IEnumerator CoolDown()                              // having a Coroutine run as a cooldown between attacks. 
     {
-        float coolDownTime = coolDownDuration;
+        float coolDownTime = coolDownDuration;      
         while (coolDownTime > 0)
         {
             coolDownTime -= Time.deltaTime;
             yield return null;
         }
         canAttack = true;
-        weapon.GetComponent<Collider>().enabled = false;
+        weapon.GetComponent<Collider>().enabled = false;    //this helps us disable the weapons collision so it doenst deal damage outside attacking.
 
         yield break;
     }

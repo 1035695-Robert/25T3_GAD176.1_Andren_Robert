@@ -9,7 +9,7 @@ namespace SAE.GAD176.SlimeBall.Healing
 
         private void Awake()
         {
-           slimeScript.healAmount = healingAmount;
+           slimeScript.healAmount = healingAmount;  //when slimeball is picked up by slime this will tell the slime script that it can heal this much.
         }
     }
 }

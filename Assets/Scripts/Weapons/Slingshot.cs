@@ -13,9 +13,10 @@ public class Slingshot : Weapon
 
     public override void AttackEnemy()
     {
-        shootScript = gameObject.GetComponent<Shoot>();
-       
-        shootScript.SetSeedType();
+            shootScript = gameObject.GetComponent<Shoot>();
+
+            shootScript.SetSeedType();
+        
     }
 
 }
