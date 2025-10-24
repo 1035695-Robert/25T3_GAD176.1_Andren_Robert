@@ -31,7 +31,7 @@ public class DamageMultiplier : MonoBehaviour
     }
     //something isnt working in the BonusMultiplierDamageCheck() isnt working for the plantmonster
 
-    public void BonusMultiplierDamageCheck()
+    private void BonusMultiplierDamageCheck()
     {
         print("start BMD check");
         if (damageMultiplyType == enemyAiScript.weakness)   // checks the damage type form the sword and compares it to the ememies weeakness

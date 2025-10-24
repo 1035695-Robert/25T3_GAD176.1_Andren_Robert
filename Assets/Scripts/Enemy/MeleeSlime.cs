@@ -52,7 +52,7 @@ public class MeleeSlime : EnemyAI
                 TowardsPlayer();            //work from week 5 class content
         }
     }
-    public void LowHealthFlee()
+    private void LowHealthFlee()
     {
         // Having the slime only heal once   
         //when low on health

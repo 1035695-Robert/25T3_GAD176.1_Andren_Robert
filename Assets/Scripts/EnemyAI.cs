@@ -12,7 +12,7 @@ public class EnemyAI : MonoBehaviour
 {
     public GameObject[] enemyType;
 
-    private Vector3 spawn;
+    //private Vector3 spawn;
     //[SerializeField] string[] weakness; AG commented out in preparation of using an ENUM instead
     // [SerializeField] string[] ;
    [SerializeField] protected bool isDead = false;

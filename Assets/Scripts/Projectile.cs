@@ -11,9 +11,8 @@ using UnityEngine;
     }
 namespace SAE.GAD176.Shoot
 {
-    public class Projectile : MonoBehaviour
+    public class Projectile : DropItems
     {
-
         private void OnTriggerEnter(Collider other)
         {
            
